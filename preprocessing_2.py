@@ -105,7 +105,14 @@ def featurize():
     user_ids = df['UserId'].unique()
     user_data = []
     start_time = time.time()
-    with  Pool(30) as p:
+
+    # instead of hard coding the number of processors let's look it up
+    # and divide by 2, this should maintain a better user experience
+    # while they wait for the task to finish
+    import os
+    num_cpus=int(os.cpu_count()/2)
+
+    with  Pool(num_cpus) as p:
         user_data = p.map(f, user_ids)
     end_time = time.time()
     print(end_time-start_time)
