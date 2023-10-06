@@ -9,7 +9,6 @@ import math
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-
 class LSTMModel(nn.Module):
     def __init__(self, n_question,  n_user, n_subject, n_quiz, n_group, hidden_dim, q_dim,  task,  dropout=0.25,  s_dim=256, default_dim=16, num_gru_layers=1, is_dash=False, bidirectional=True):
         super().__init__()
